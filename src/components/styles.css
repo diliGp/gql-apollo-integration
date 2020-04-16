@@ -1,0 +1,22 @@
+ul {
+    list-style: none;
+    display: flex;
+}
+ul > li {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 200px;
+    box-shadow: 2px 2px 4px #dedede;
+    padding: 10px;
+    color: rgb(224, 0, 130);
+    margin: auto;
+    cursor: pointer;
+}
+h3 {
+    display: block;
+}
+.info-section {
+    color: #323232;
+    font-size: 14px;
+}
