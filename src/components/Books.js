@@ -1,24 +1,30 @@
-import React, { useState } from 'react'
-import './styles.css'
-import { getAllBooks } from '../queries/books'
-import { useQuery } from '@apollo/react-hooks'
+import React from 'react'
+import '../styles.css'
 import Book from './Book'
+import { connect } from 'react-redux'
+import { bookActions } from '../store/books/actionCreator'
 
 
-const Books = () => {
-    const [selectedBookId, setSelectedBookId] = useState();
-
-    const { loading, data, error } = useQuery(getAllBooks);
-    if (loading) return <p>Loading...</p>
+const Books = ({ books, processing, error, getBook }) => {
+    if (processing) return <p>Loading...</p>
     if (error) return <p>Error fetching list...</p>
+
+
+    const getBookDetails = (book_id) => {
+        if (!book_id) {
+            return;
+        }
+
+        getBook(book_id);
+    }
 
     return (
         <>
-            <ul>
+            <ul className="grid">
                 {
-                    data.books && data.books.length > 0 &&
-                    data.books.map(book => (
-                        <li key={book.id} onClick={() => setSelectedBookId(book.id)}>
+                    books && books.length > 0 &&
+                    books.map(book => (
+                        <li key={book.id} onClick={() => getBookDetails(book.id)}>
                             <h3>{book.name}</h3>
                             <div className="info-section">
                                 <p>Genre: {book.genre}</p>
@@ -27,9 +33,20 @@ const Books = () => {
                     ))
                 }
             </ul>
-            {selectedBookId && <Book id={selectedBookId} />}
+            <Book />
         </>
     )
 }
 
-export default Books
+
+const mapStoreToProps = (store) => ({
+    books: store.books.books,
+    processing: store.books.processing,
+    errors: store.books.errors,
+});
+
+const mapActionsToProps = {
+    getBook: bookActions.book.request
+}
+
+export default connect(mapStoreToProps, mapActionsToProps)(Books);

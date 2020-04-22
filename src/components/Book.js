@@ -1,24 +1,26 @@
 import React from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import { getBook } from '../queries/books'
+import { connect } from 'react-redux';
 
-const Book = ({ id }) => {
-    const { loading, data, error } = useQuery(getBook, {
-        variables: { id }
-    });
-
-    if (loading) return <p>Loading...</p>
+const Book = ({ book, processing, error }) => {
+    if (processing) return <p>Loading...</p>
     if (error) return <p>Error fetching book!!</p>
+    if(!book || !book.name) return null;
 
     return (
         <section>
-            <h3>{data.book.name}</h3>
+            <h3>{book.name}</h3>
             <div className="info-section">
-                <p>Genre: {data.book.genre}</p>
-                <p>Author: {data.book.author.name} ({data.book.author.age})</p>
+                <p>Genre: {book.genre}</p>
+                <p>Author: {book.author.name} ({book.author.age})</p>
             </div>
         </section>
     )
 }
 
-export default Book
+const mapStoreToProps = (store) => ({
+    book: store.books.currentBook,
+    processing: store.books.processing,
+    errors: store.books.errors,
+});
+
+export default connect(mapStoreToProps)(Book)

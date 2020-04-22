@@ -1,0 +1,80 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+header {
+    display: flex;
+    justify-content: center;
+    box-shadow: 2px 2px 4px #dedede;
+    position: sticky;
+    width: 100%;
+    top: 0;
+    z-index: 9;
+    background-color: #fefefe;
+    padding: 10px;
+}
+header nav {
+    padding: 10px;
+}
+header nav a {
+    margin: 0 10px;
+    padding: 10px;
+    color: #232323;
+    text-decoration: none;
+    font-weight: bold;
+}
+header nav a:hover {
+    border-bottom: 2px solid orangered;
+}
+.row {
+    display: flex;
+    flex-direction: column;
+}
+.col60 {
+    width: 60%;
+}
+.col40 {
+    width: 40%;
+}
+.description-section {
+    background-color: rgb(224, 0, 130);
+    color: #fafaff;
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    left: auto;
+}
+.description-section article h1 {
+    text-transform: capitalize;
+}
+.description-section article {
+    padding: 10px;
+}
+ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+ul > li {
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 2px 2px 4px #dedede;
+    padding: 10px;
+    color: rgb(224, 0, 130);
+    cursor: pointer;
+}
+ul.grid > li {
+    margin: auto;
+}
+ul.list > li {
+    margin: 10px;
+    text-transform: capitalize;
+}
+h3 {
+    display: block;
+}
+.info-section {
+    color: #323232;
+    font-size: 14px;
+}

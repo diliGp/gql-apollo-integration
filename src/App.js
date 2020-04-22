@@ -1,19 +1,26 @@
-import React from 'react';
-import './App.css';
-import { ApolloProvider } from '@apollo/react-hooks';
-import { client } from './GQLClient';
-import Books from './components/Books';
+import React, { Component } from 'react';
+import { store } from './store';
+import { postActions } from './store/posts/actionCreator';
+import { Switch, Route } from 'react-router-dom';
+import Router from './router';
+import { bookActions } from './store/books/actionCreator';
 
-function App() {
-  return (
-    <ApolloProvider client={client}>
+class App extends Component {
+
+  componentDidMount() {
+    store.dispatch(postActions.posts.request())
+    store.dispatch(bookActions.books.request())
+  }
+
+  render() {
+    return (
       <div className="App">
-        <main>
-          <Books />
-        </main>
+        <Switch>
+          <Route path="/" render={props => <Router {...props} />} />
+        </Switch>
       </div>
-    </ApolloProvider>
-  );
+    );
+  }
 }
 
 export default App;
