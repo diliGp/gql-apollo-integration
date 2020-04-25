@@ -1,14 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './styles.css'
-import { getAllBooks } from '../queries/books'
 import { useQuery } from '@apollo/react-hooks'
 import Book from './Book'
+import { getAllBooks } from '../GQL/queries/books'
+import { onBookAdded } from '../GQL/subscriptions/books'
 
 
 const Books = () => {
     const [selectedBookId, setSelectedBookId] = useState();
+    const { loading, data, error, subscribeToMore } = useQuery(getAllBooks);
 
-    const { loading, data, error } = useQuery(getAllBooks);
+    useEffect(() => {
+        /**
+         * Adds newly created data into the original data object using subscription. 
+         */
+        subscribeToMore({
+            document: onBookAdded,
+            updateQuery: (prev, { subscriptionData }) => {
+                if (!subscriptionData.data) return prev;
+                const newBook = subscriptionData.data.bookAdded;
+                
+                /** 
+                 * Return new data of books 
+                 */
+                return {
+                    ...prev,
+                    books: [
+                        ...prev.books,
+                        newBook
+                    ]
+                }
+            }
+        })
+    }, []);
+
     if (loading) return <p>Loading...</p>
     if (error) return <p>Error fetching list...</p>
 

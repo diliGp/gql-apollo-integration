@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
 import { ApolloProvider } from '@apollo/react-hooks';
-import { client } from './GQLClient';
+import { client } from './GQL/client';
 import Books from './components/Books';
+import AddBook from './components/AddBook';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <div className="App">
         <main>
           <Books />
+          <AddBook />
         </main>
       </div>
     </ApolloProvider>

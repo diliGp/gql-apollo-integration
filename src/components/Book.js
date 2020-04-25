@@ -1,12 +1,14 @@
-import React from 'react'
-import { useQuery } from '@apollo/react-hooks'
-import { getBook } from '../queries/books'
+import React from 'react';
+import { useQuery } from '@apollo/react-hooks';
+import { getBook } from '../GQL/queries/books';
+
 
 const Book = ({ id }) => {
     const { loading, data, error } = useQuery(getBook, {
         variables: { id }
     });
 
+    if (!data || !data.book) return null;
     if (loading) return <p>Loading...</p>
     if (error) return <p>Error fetching book!!</p>
 
@@ -19,6 +21,6 @@ const Book = ({ id }) => {
             </div>
         </section>
     )
-}
+};
 
-export default Book
+export default Book;
