@@ -1,0 +1,122 @@
+@import "../variables";
+@import "../mixins";
+
+html,
+body {
+    @include noMarginPadding;
+    background-color: $bgColorDark;
+    color: $textColor;
+}
+a {
+    text-decoration: $aDecoration;
+    color: $textColor;
+}
+ul {
+    @include noMarginPadding;
+}
+li {
+    list-style: $listStyle;
+}
+
+header {
+    @include boxShadow;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    nav {
+        ul {
+            display: flex;
+            li {
+                padding: 10px;
+                margin: 0 10px;
+                a {
+                    display: block;
+                    transition: border-bottom 0.3s linear;
+                    &:hover {
+                        border-bottom: 2px solid $borderColor;
+                    }
+                }
+            }
+        }
+    }
+}
+
+section {
+    h1 {
+        position: relative;
+        display: inline-block;
+        &::before,
+        &::after {
+            position: absolute;
+            width: calc(100% + 20px);
+            content: "";
+            left: 50%;
+            transform: translateX(-50%);
+            top: auto;
+            border-bottom: 1px solid;
+            bottom: 0;
+        }
+        &::after {
+            bottom: -4px;
+        }
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        .col {
+            @include boxShadow;
+            margin: 10px;
+            max-width: 30%;
+        }
+    }
+}
+section.products-container {
+    .row {
+        justify-content: space-evenly;
+        .col {
+            @include boxShadowNeu;
+            max-width: 20%;
+            border-radius: 20px;
+            .img-warpper {
+                padding: 20px 10px;
+                img {
+                    width: 100%;
+                    border-radius: 5px;
+                }
+            }
+            .item-info {
+                display: flex;
+                flex-direction: column;
+            }
+            .meta-info {
+                display: flex;
+                justify-content: space-evenly;
+                padding: 10px;
+                align-items: center;
+            }
+            .title {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                text-transform: capitalize;
+                padding: 0 10px;
+            }
+            .atc-btn {
+                background-color: transparent;
+                color: $textColor;
+                border: none;
+                border-radius: 15px;
+                box-shadow: 2px 2px 4px 1px $shadowColor, -2px -2px 4px 1px $shadowInvertColor;
+                padding: 10px;
+                cursor: pointer;
+                transition: background-color 0.5s ease, color 0.5s ease;
+                outline: none;
+                &:hover {
+                    @include colorInvert;
+                }
+            }
+        }
+    }
+}

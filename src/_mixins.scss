@@ -1,0 +1,46 @@
+@import "variables";
+
+@mixin boxShadow {
+    box-shadow: 2px 2px 4px 1px $shadowColor;
+}
+@mixin boxShadowNeu {
+    box-shadow: 2px 2px 4px 1px $shadowColor, -2px -2px 4px 1px $shadowInvertColor;
+}
+
+@mixin noMarginPadding {
+    margin: 0;
+    padding: 0;
+}
+
+@mixin colorInvert {
+    background-color: $textColor;
+    color: $bgColorDark;    
+}
+
+// Small devices
+@mixin sm {
+    @media (min-width: #{$screen-sm-min}) {
+        @content;
+    }
+ }
+ 
+ // Medium devices
+ @mixin md {
+    @media (min-width: #{$screen-md-min}) {
+        @content;
+    }
+ }
+ 
+ // Large devices
+ @mixin lg {
+    @media (min-width: #{$screen-lg-min}) {
+        @content;
+    }
+ }
+ 
+ // Extra large devices
+ @mixin xl {
+    @media (min-width: #{$screen-xl-min}) {
+        @content;
+    }
+ }

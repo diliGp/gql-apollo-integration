@@ -1,0 +1,23 @@
+@import "mixins";
+
+main {
+    display: flex;
+    flex-direction: column;
+    width: 1100px;
+    justify-content: space-around;
+    margin: auto;
+    text-align: center;
+
+    @include sm {
+        width: 100%;
+    }
+    @include md {
+        width: 750px;
+    }
+    @include lg {
+        width: 990px;
+    }
+    @include xl {
+        width: 1120px;
+    }
+}
