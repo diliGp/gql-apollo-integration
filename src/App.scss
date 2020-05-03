@@ -1,23 +1,143 @@
 @import "mixins";
+@import "variables";
+
+html,
+body {
+  @include noMarginPadding;
+  background-color: $bgColorDark;
+  color: $textColor;
+}
+
+a {
+  text-decoration: $aDecoration;
+  color: $textColor;
+}
+ul {
+  @include noMarginPadding;
+}
+li {
+  list-style: $listStyle;
+}
+.mtb10 {
+  margin: 10px auto 10px auto;
+}
+.mlr10 {
+  margin: auto 10px auto 10px ;
+}
+
+header {
+  @include boxShadow;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 9;
+  background-color: $bgColorDark;
+  nav {
+    ul {
+      display: flex;
+      li {
+        padding: 10px;
+        margin: 0 10px;
+        a {
+          display: block;
+          transition: border-bottom 0.3s linear;
+          &:hover {
+            border-bottom: 2px solid $borderColor;
+          }
+        }
+      }
+    }
+  }
+}
+
+fieldset {
+  border: none;
+  abbr[title="required"] {
+    color: red;
+  }
+
+  .form-control:not([type="radio"]) {
+    padding: 5px;
+    margin: 0 10px;
+    width: 60%;
+    border: none;
+    background-color: $bgColorDark;
+    border-bottom: .5px solid $borderColor;
+    outline: none;
+    &:focus {
+      outline: solid;
+      outline-color: $textColor;
+    }
+  }
+  
+  input[type="password"],
+  input[type="text"] {
+    caret-color: $textColor;
+  }
+  
+  .form-control option {
+    background-color: $bgColorDark;
+    color: $textColor;
+  }
+
+  select.form-control {
+    color: $textColor;
+  }
+}
 
 main {
-    display: flex;
-    flex-direction: column;
-    width: 1100px;
-    justify-content: space-around;
-    margin: auto;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 1100px;
+  justify-content: space-around;
+  margin: auto;
+  min-height: 90vh;
 
-    @include sm {
-        width: 100%;
+  section.text-center {
+    text-align: center;
+  }
+
+  button.btn-neu {
+    background-color: transparent;
+    color: $textColor;
+    border: none;
+    border-radius: 15px;
+    @include boxShadowNeu;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    outline: none;
+    &:hover {
+      @include colorInvert;
     }
-    @include md {
-        width: 750px;
+    &:focus {
+      outline: solid;
     }
-    @include lg {
-        width: 990px;
-    }
-    @include xl {
-        width: 1120px;
-    }
+  }
+
+  @include sm {
+    width: 100%;
+  }
+  @include md {
+    width: 750px;
+  }
+  @include lg {
+    width: 990px;
+  }
+  @include xl {
+    width: 1120px;
+  }
+}
+
+footer {
+  display: flex;
+  height: 100px;
+  margin: 20px auto 0 auto;
+  justify-content: center;
+  background-color: $footerBgColor;
+  color: $footerTxtColor;
+  @include boxShadow;
 }

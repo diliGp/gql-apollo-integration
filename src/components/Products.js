@@ -5,7 +5,7 @@ import Product from './Product';
 
 const Products = () => {
     return (
-        <section className="products-container">
+        <section className="text-center products-container">
             <h1>Products Section</h1>
             <div className="row" aria-label="Products List">
                 {

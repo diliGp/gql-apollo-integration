@@ -1,51 +1,6 @@
 @import "../variables";
 @import "../mixins";
 
-html,
-body {
-    @include noMarginPadding;
-    background-color: $bgColorDark;
-    color: $textColor;
-}
-a {
-    text-decoration: $aDecoration;
-    color: $textColor;
-}
-ul {
-    @include noMarginPadding;
-}
-li {
-    list-style: $listStyle;
-}
-
-header {
-    @include boxShadow;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: sticky;
-    top: 0;
-    z-index: 9;
-    background-color: $bgColorDark;
-    nav {
-        ul {
-            display: flex;
-            li {
-                padding: 10px;
-                margin: 0 10px;
-                a {
-                    display: block;
-                    transition: border-bottom 0.3s linear;
-                    &:hover {
-                        border-bottom: 2px solid $borderColor;
-                    }
-                }
-            }
-        }
-    }
-}
-
 section {
     h1 {
         position: relative;
@@ -106,20 +61,6 @@ section.products-container {
                 text-overflow: ellipsis;
                 text-transform: capitalize;
                 padding: 0 10px;
-            }
-            .atc-btn {
-                background-color: transparent;
-                color: $textColor;
-                border: none;
-                border-radius: 15px;
-                box-shadow: 2px 2px 4px 1px $shadowColor, -2px -2px 4px 1px $shadowInvertColor;
-                padding: 10px;
-                cursor: pointer;
-                transition: background-color 0.5s ease, color 0.5s ease;
-                outline: none;
-                &:hover {
-                    @include colorInvert;
-                }
             }
         }
     }

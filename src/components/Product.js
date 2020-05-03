@@ -11,7 +11,7 @@ const Product = ({ item, id }) => {
                 <h3 className="title">{name}</h3>
                 <div className="meta-info">
                     <span className="price">₹{price && parseFloat(price).toFixed(1)}</span>
-                    <button className="atc-btn">Add to cart</button>
+                    <button className="atc-btn btn-neu">Add to cart</button>
                 </div>
             </div>
         </div>

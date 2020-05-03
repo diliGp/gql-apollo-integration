@@ -5,7 +5,7 @@ import Products from './Products';
 const Home = () => {
     return (
         <>
-            <section className="home-container">
+            <section className="text-center home-container">
                 <h1>Flex Section</h1>
                 <div className="row">
                     <div className="col box-1">
